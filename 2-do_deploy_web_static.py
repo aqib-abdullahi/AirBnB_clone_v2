@@ -28,6 +28,12 @@ def do_deploy(archive_path):
         return False
 
     try:
+         # Get the current host being executed
+        current_host = env.host_string
+
+        # Set the private key for the current host
+        env.key_filename = env.key_filename.get(current_host)
+
         filename = archive_path.split("/")[-1]
         filename_no_ext = filename.split(".")[0]
         put(archive_path, "/tmp/{}".format(filename))
