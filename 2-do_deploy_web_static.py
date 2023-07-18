@@ -4,6 +4,10 @@ from fabric.api import *
 from os.path import exists
 
 env.hosts = ['52.23.212.186', '3.89.155.70']
+env.key_filename = {
+    '52.23.212.186': '~/.ssh/id_rsa',
+    '3.89.155.70': '~/.ssh/server2'
+}
 
 def do_pack():
     """Generates a .tgz archive from the contents
