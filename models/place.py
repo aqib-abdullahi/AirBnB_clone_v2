@@ -54,7 +54,7 @@ class Place(BaseModel, Base):
         my_list = []
         extracted_amenities = storage.all('Amenity').values()
         for amenity in extracted_amenities:
-            if self.id == amenity.amenity_ids:
+            if amenity in self.amenities:
                 my_list.append(amenity)
         return my_list
 
@@ -63,5 +63,5 @@ class Place(BaseModel, Base):
         """Setter attribute that handles append method for adding an Amenity.id
         to the attribute amenity_ids.
         """
-        if isinstance(obj, 'Amenity'):
-            self.amenity_id.append(obj.id)
+        if isinstance(obj, Amenity):
+            self.amenities.append(obj)
